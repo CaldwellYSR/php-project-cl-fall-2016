@@ -1,0 +1,68 @@
+﻿html, body {
+	font-family: helvetica, serif;
+	font-size: 18px;
+}
+body {
+	background: #333;
+	color: #eee;
+	padding-bottom: 180px;
+}
+table {
+	border-collapse: collapse;
+}
+th {
+	background: #111;
+	border: none;
+	padding: 1rem 2rem;
+}
+td {
+	border: 1px solid #eee;
+	border-width: 0 0 1px;
+	padding: 1rem 0;
+	text-align: center;
+}
+tr:last-of-type td {
+	border-width: 0;
+}
+.delete {
+	background: red;
+	padding: 0;
+}
+.delete a {
+	color: white;
+	display: block;
+	height: 55px;
+	line-height: 55px;
+	text-decoration: none;
+	width: 100%;
+}
+form {
+	width: 500px;
+}
+label {
+	display: block;
+	height: 55px;
+	line-height: 55px;
+	overflow: hidden;
+	width: 100%;
+}
+input, select {
+	background: #333;
+	border: 2px solid #eee;
+	border-width: 0 0 2px;
+	color: #eee;
+	float: right;
+	margin: 0 0 0 1rem;
+	padding: 0.5rem 1rem;
+}
+.button {
+	background: #467435;
+	border-radius: 1rem 0 1rem;
+	border-width: 0;
+	color: white;
+	font-size: 1.25rem;
+	padding: 0.75rem 2rem;
+}
+.button:hover {
+	background: #356324;
+}
