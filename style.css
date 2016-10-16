@@ -7,6 +7,12 @@ body {
 	color: #eee;
 	padding-bottom: 180px;
 }
+h3 a {
+    color: red;
+    font-size: 1rem;
+    margin-left: 2rem;
+    text-decoration: none;
+}
 table {
 	border-collapse: collapse;
 }
@@ -28,6 +34,11 @@ tr:last-of-type td {
 	background: red;
 	padding: 0;
 }
+.update {
+    background: green;
+    padding: 0;
+}
+.update a, 
 .delete a {
 	color: white;
 	display: block;

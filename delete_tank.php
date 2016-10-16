@@ -8,10 +8,9 @@
 
 	// Setup the database variable
 	require_once("includes/functions.php");
-	$db = get_db();
 
 	// Try deleting the tank @see includes/functions.php
-	if (delete_tank($db, $_GET["id"])) {
+	if (delete_tank($_GET["id"])) {
 		header("Location:index.php");
 	} else {
 		echo "Something went wrong... sorry about that";

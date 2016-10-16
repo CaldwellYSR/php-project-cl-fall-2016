@@ -1,8 +1,7 @@
 <?php 
 	// Setup database and initialize tank variable
 	require_once(__DIR__."/includes/functions.php"); 
-	$db = get_db();
-	$tanks = get_tanks($db);
+	$tanks = get_tanks();
 ?>
 <!Doctype html />
 <html>
@@ -25,7 +24,7 @@
 				<th>DMG</th>
 				<th>PEN</th>
 				<th>DPM</th>
-				<th>&nbsp;</th>
+				<th colspan="2">&nbsp;</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -42,6 +41,7 @@
 					<td><?php echo $tank->damage; ?></td>
 					<td><?php echo $tank->penetration; ?></td>
 					<td><?php echo $tank->damage_per_minute; ?></td>
+					<td class="update"><a href="update_tank.php?id=<?php echo $tank->id; ?>">&#x270E;</a></td>
 					<td class="delete"><a href="delete_tank.php?id=<?php echo $tank->id; ?>">X</a></td>
 				</tr> <?php
 				endforeach;
@@ -55,59 +55,6 @@
 	<hr />
 	<!-- Render new tank form -->
 	<h3>Create a new tank</h3>
-	<form action="new_tank.php" method="POST">
-		<label for="name">Name: 
-			<input type="text" id="name" name="name" />
-		</label>
-		<label for="nation">Nation:
-			<select name="nation" id="nation">
-				<option value="USSR">USSR</option>
-				<option value="GERMANY">Germany</option>
-				<option value="USA">U.S.A.</option>
-				<option value="CHINA">China</option>
-				<option value="FRANCE">France</option>
-				<option value="UK">U.K.</option>
-				<option value="JAPAN">Japan</option>
-				<option value="CZECHOSLOVAKIA">Czechoslovakia</option>
-				<option value="SWEDEN">Sweden</option>
-			</select>
-		</label>
-		<label for="type">Type:
-			<select name="type" id="type">
-				<option value="Light Tank">Light Tank</option>
-				<option value="Medium Tank">Medium Tank</option>
-				<option value="Heavy Tank">Heavy Tank</option>
-				<option value="Tank Destroyer">Tank Destroyer</option>
-				<option value="SPG">Artillery Tank</option>
-			</select>
-		</label>
-		<label for="tier">Tier:
-			<select name="tier" id="tier">
-				<option value="1">I</option>
-				<option value="2">II</option>
-				<option value="3">III</option>
-				<option value="4">IV</option>
-				<option value="5">V</option>
-				<option value="6">VI</option>
-				<option value="7">VII</option>
-				<option value="8">VII</option>
-				<option value="9">IX</option>
-				<option value="10">X</option>
-			</select>
-		</label>
-		<label for="hit_points">HP: 
-			<input type="number" min="1" step="1" id="hit_points" name="hit_points" />
-		</label>
-		<label for="damage">Standard Shell Damage: 
-			<input type="number" min="1" step="1" id="damage" name="damage" />
-		</label>
-		<label for="penetration">Standard Shell Penetration: 
-			<input type="number" min="1" step="1" id="penetration" name="penetration" />
-		</label>
-		<label for="damage_per_minute">DPM: 
-			<input type="number" min="1" step="1" id="damage_per_minute" name="damage_per_minute" />
-		</label>
-		<input class="button" type="submit" name="submit" id="submit" value="Submit" />
-	</form>
+    <?php render_form(); ?>
 </body>
 </html>
