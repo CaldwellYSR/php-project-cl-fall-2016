@@ -1,6 +1,7 @@
 <?php 
 
 	require_once("config.php");
+    require_once("tank.php");
 
     function validate_data($post) {
         if (filter_var($post["tier"], FILTER_VALIDATE_INT)) {
@@ -20,24 +21,6 @@
         return null;
     }
 
-	/**
-	 * Helper Function that returns roman numeral representation of 1-10
-	 * @param Number $integer - Integer to be transformed
-	 */
-	function roman_numeral($integer) {
-		$table = array('X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1);
-		$return = "";
-		while ($integer > 0) {
-			foreach($table as $rom => $arb) {
-				if ($integer >= $arb) {
-					$integer -= $arb;
-					$return .= $rom;
-					break;
-				}
-			}
-		}
-		return $return;
-	}
 
 	/**
 	 * Get All Tanks
@@ -52,12 +35,14 @@
 		";
 
 		$stmt = $db->query($sql);
-		return $stmt->fetchAll();
+		$tanks = $stmt->fetchAll();
+        $output = array();
+        foreach ($tanks as $tank) {
+            $output[] = new Tank($tank);
+        }
+        return $output;
 	}
 
-	/**
-	 * Get specific tank by id, limited to 1 tank
-	 */
 	function get_tank_by_id($id = 1) {
 
         $db = Config::getConnection();
@@ -77,7 +62,7 @@
 		if (count($results) == 0) {
 			return false;
 		}
-		return $results[0];
+		return new Tank($results[0]);
 	}
 
 	/**
@@ -108,7 +93,11 @@
 		if (count($results) == 0) {
 			return false;
 		}
-		return $results;
+        $output = array();
+        foreach ($results as $tank) {
+            $output[] = new Tank($tank);
+        }
+        return $output;
 
 	}
 
@@ -139,57 +128,6 @@
 		return $stmt->execute($details);
 
 	}
-
-	/**
-	 * Delete tank with given ID
-	 * @param Number $id - ID of the tank to be deleted
-	 */
-	function delete_tank($id) {
-
-        $db = Config::getConnection();
-		
-		if (!isset($id) || $id < 0) {
-			return false;
-		}
-
-		$sql = "
-			DELETE
-			FROM `tanks`
-			WHERE id = :id
-			LIMIT 1
-		";
-
-		$stmt = $db->prepare($sql);
-		return $stmt->execute(array(
-			'id' => $id
-		));
-
-	}
-
-    /**
-     * Update tank with given id and details
-     * @param Number $id - ID of the tank to be updated
-     * @param Array $details - Array of key value pairs of the columns to be updated
-     */
-    function update_tank($id, $details) {
-
-        $db = Config::getConnection();
-        $sql = "
-            UPDATE `tanks`
-            SET name = :name, 
-                tier = :tier, 
-                nation = :nation, 
-                type = :type, 
-                hit_points = :hit_points, 
-                damage = :damage, 
-                penetration = :penetration, 
-                damage_per_minute = :damage_per_minute
-            WHERE id = :id
-        ";
-        $stmt = $db->prepare($sql);
-        return $stmt->execute($details);
-
-    }
 
     /**
      * Returns output buffer of the form to render based on the tank input

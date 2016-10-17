@@ -10,7 +10,7 @@
 	require_once("includes/functions.php");
 
 	// Try deleting the tank @see includes/functions.php
-	if (delete_tank($_GET["id"])) {
+	if (Tank::delete_by_id($_GET["id"])) {
 		header("Location:index.php");
 	} else {
 		echo "Something went wrong... sorry about that";

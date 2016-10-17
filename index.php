@@ -34,7 +34,7 @@
 				foreach ($tanks as $tank) : ?>
 				<tr>
 					<td><?php echo $tank->nation; ?></td>
-					<td><?php echo roman_numeral($tank->tier); ?></td>
+					<td><?php echo $tank->tier; ?></td>
 					<td><?php echo $tank->type; ?></td>
 					<td><?php echo $tank->name; ?></td>
 					<td><?php echo $tank->hit_points; ?></td>

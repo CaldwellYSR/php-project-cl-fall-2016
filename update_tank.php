@@ -2,9 +2,10 @@
 	require_once(__DIR__."/includes/functions.php"); 
 
     if (isset($_POST['submit'])) {
+        $tank = get_tank_by_id($_POST["id"]);
         unset($_POST["submit"]);
         if ($post = validate_data($_POST)) {
-            if (update_tank($post["id"], $post)) {
+            if ($tank->update($post)) {
                 header("Location:index.php");
             } else {
                 echo "Something went wrong... sorry about that";

@@ -17,7 +17,7 @@ class Config {
             $dbstring = "mysql:host=localhost;dbname=world_of_tanks";
             $options = array(
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
             );
             $self = new PDO($dbstring, 'dev_wot', '32$a_2JDM%@2aDme', $options);
         }
