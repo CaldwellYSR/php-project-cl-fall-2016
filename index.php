@@ -1,7 +1,14 @@
 <?php 
 	// Setup database and initialize tank variable
 	require_once(__DIR__."/includes/functions.php"); 
-	$tanks = get_tanks();
+    if (isset($_GET["tankid"])) {
+        $tanks = get_tank_by_id($_GET["tankid"]);
+    } else {
+        $nation = (isset($_GET["nation"])) ? $_GET["nation"]: "%";
+        $tier = (isset($_GET["tier"])) ? $_GET["tier"]: "%";
+        $type = (isset($_GET["type"])) ? $_GET["type"]: "%";
+        $tanks = get_tanks_with_specs($nation, $tier, $type);
+    }
 ?>
 <!Doctype html />
 <html>
@@ -11,7 +18,6 @@
 </head>
 <body>
 	<h1>World of Tanks</h1>
-	<h3>Tank Destroyers</h3>
 	<!-- Render table for currently pulled tanks. Can be pulled into a function later if need be -->
 	<table>
 		<thead>
@@ -33,10 +39,10 @@
 			if ($tanks && count($tanks) > 0) : 
 				foreach ($tanks as $tank) : ?>
 				<tr>
-					<td><?php echo $tank->nation; ?></td>
-					<td><?php echo $tank->tier; ?></td>
-					<td><?php echo $tank->type; ?></td>
-					<td><?php echo $tank->name; ?></td>
+					<td><a href="?nation=<?php echo $tank->nation; ?>"><?php echo $tank->nation; ?></td>
+					<td><a href="?tier=<?php echo $tank->tier; ?>"><?php echo $tank->roman_tier; ?></td>
+					<td><a href="?type=<?php echo $tank->type; ?>"><?php echo $tank->type; ?></td>
+                    <td><a href="?tankid=<?php echo $tank->id; ?>"><?php echo $tank->name; ?></a></td>
 					<td><?php echo $tank->hit_points; ?></td>
 					<td><?php echo $tank->damage; ?></td>
 					<td><?php echo $tank->penetration; ?></td>

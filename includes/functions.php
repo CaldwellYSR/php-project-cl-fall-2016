@@ -62,7 +62,7 @@
 		if (count($results) == 0) {
 			return false;
 		}
-		return new Tank($results[0]);
+		return array(new Tank($results[0]));
 	}
 
 	/**
@@ -71,16 +71,16 @@
 	 * @param Number $tier [optional] - Tier of the tank in the WoT Tech Tree
 	 * @param String $type [optional] - Type of tank in the WoT Tech Tree
 	 */
-	function get_tanks_with_specs($nation = "USSR", $tier = 4, $type = "Tank Destroyer") {
+	function get_tanks_with_specs($nation = "%", $tier = "%", $type = "%") {
 
         $db = Config::getConnection();
 
 		$sql = "
 			SELECT *
 			FROM `tanks`
-			WHERE nation = :nation
-			AND tier = :tier
-			AND type = :type
+			WHERE nation LIKE :nation
+			AND tier LIKE :tier
+			AND type LIKE :type
 		";
 
 		$stmt = $db->prepare($sql);
@@ -98,34 +98,6 @@
             $output[] = new Tank($tank);
         }
         return $output;
-
-	}
-
-	/**
-	 * Create a new tank with the given options
-	 * @param Array $details - An array of the column => value pairs of the tank to be put in the DB
-	 */
-	function create_tank($details) {
-
-        $db = Config::getConnection();
-        
-		$details["id"] = NULL;
-
-		if (!isset($details["hit_points"])) { $details["hit_points"] = null; }
-		if (!isset($details["damage"])) { $details["damage"] = null; }
-		if (!isset($details["penetration"])) { $details["penetration"] = null; }
-		if (!isset($details["damage_per_minute"])) { $details["damage_per_minute"] = null; }
-
-
-		$sql = "
-			INSERT INTO `tanks`
-			(`id`, `name`, `tier`, `nation`, `type`, `hit_points`, `damage`, `penetration`, `damage_per_minute`)
-			VALUES
-			(:id, :name, :tier, :nation, :type, :hit_points, :damage, :penetration, :damage_per_minute)
-		";
-
-		$stmt = $db->prepare($sql);
-		return $stmt->execute($details);
 
 	}
 

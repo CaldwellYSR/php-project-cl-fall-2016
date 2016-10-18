@@ -14,7 +14,7 @@
 	unset($_POST["submit"]);
 	
 	// Attempt to create a new tank in the database and redirect back to home page.
-	if (create_tank($_POST)) {
+	if (Tank::create_tank($_POST)) {
 		header("Location:index.php");
 	} else {
 		echo "Something didn't work...";

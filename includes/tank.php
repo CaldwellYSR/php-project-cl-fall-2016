@@ -9,7 +9,7 @@ class Tank {
         foreach ($obj as $key => $value) {
             $this->$key = $value;
         }
-        $this->tier = $this->roman_numeral($this->tier);
+        $this->roman_tier = $this->roman_numeral($this->tier);
     }
 
     public function update(Array $details) {
@@ -90,6 +90,29 @@ class Tank {
 		}
 		return $return;
 	}
+
+	public static function create_tank($details) {
+
+		$details["id"] = NULL;
+
+		if (!isset($details["hit_points"])) { $details["hit_points"] = null; }
+		if (!isset($details["damage"])) { $details["damage"] = null; }
+		if (!isset($details["penetration"])) { $details["penetration"] = null; }
+		if (!isset($details["damage_per_minute"])) { $details["damage_per_minute"] = null; }
+
+
+		$sql = "
+			INSERT INTO `tanks`
+			(`id`, `name`, `tier`, `nation`, `type`, `hit_points`, `damage`, `penetration`, `damage_per_minute`)
+			VALUES
+			(:id, :name, :tier, :nation, :type, :hit_points, :damage, :penetration, :damage_per_minute)
+		";
+
+        $stmt = $this->db->prepare($sql);
+		return $stmt->execute($details);
+
+	}
+
 }
 
 ?>

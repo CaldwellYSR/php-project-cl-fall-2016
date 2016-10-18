@@ -1,4 +1,7 @@
-﻿html, body {
+﻿* {
+    box-sizing: border-box;
+}
+html, body {
 	font-family: helvetica, serif;
 	font-size: 18px;
 }
@@ -24,8 +27,19 @@ th {
 td {
 	border: 1px solid #eee;
 	border-width: 0 0 1px;
-	padding: 1rem 0;
+    max-width: 150px;
+    overflow: hidden;
+	padding: 1rem;
 	text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+td a {
+    color: #eee;
+    text-decoration: none;
+}
+td a:hover {
+    text-decoration: underline;
 }
 tr:last-of-type td {
 	border-width: 0;
