@@ -30,6 +30,6 @@
 </head>
 <body>
     <h3>Update Tank <a href="index.php">&lt;&lt; Back</a></h3>
-    <?php render_form($tank); ?>
+    <?php $tank->render_form(); ?>
 </body>
 </html>

@@ -62,7 +62,7 @@
 		if (count($results) == 0) {
 			return false;
 		}
-		return array(new Tank($results[0]));
+		return new Tank($results[0]);
 	}
 
 	/**

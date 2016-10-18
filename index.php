@@ -61,6 +61,6 @@
 	<hr />
 	<!-- Render new tank form -->
 	<h3>Create a new tank</h3>
-    <?php render_form(); ?>
+    <?php Tank::render_new_form(); ?>
 </body>
 </html>
