@@ -49,38 +49,38 @@ class Tank {
                 </label>
                 <label for="nation">Nation:
                     <select name="nation" id="nation">
-                <option value="USSR"<?php selected("USSR", $this->nation); ?>>USSR</option>
-                        <option value="GERMANY"<?php selected("GERMANY", $this->nation); ?>>Germany</option>
-                        <option value="USA"<?php selected("USA", $this->nation); ?>>U.S.A.</option>
-                        <option value="CHINA"<?php selected("CHINA", $this->nation); ?>>China</option>
-                        <option value="FRANCE"<?php selected("FRANCE", $this->nation); ?>>France</option>
-                        <option value="UK"<?php selected("UK", $this->nation); ?>>U.K.</option>
-                        <option value="JAPAN"<?php selected("JAPAN", $this->nation); ?>>Japan</option>
-                        <option value="CZECHOSLOVAKIA"<?php selected("CZECHOSLOVAKIA", $this->nation); ?>>Czechoslovakia</option>
-                        <option value="SWEDEN"<?php selected("SWEDEN", $this->nation); ?>>Sweden</option>
+                        <option value="USSR"<?php $this->selected("USSR", $this->nation); ?>>USSR</option>
+                        <option value="GERMANY"<?php $this->selected("GERMANY", $this->nation); ?>>Germany</option>
+                        <option value="USA"<?php $this->selected("USA", $this->nation); ?>>U.S.A.</option>
+                        <option value="CHINA"<?php $this->selected("CHINA", $this->nation); ?>>China</option>
+                        <option value="FRANCE"<?php $this->selected("FRANCE", $this->nation); ?>>France</option>
+                        <option value="UK"<?php $this->selected("UK", $this->nation); ?>>U.K.</option>
+                        <option value="JAPAN"<?php $this->selected("JAPAN", $this->nation); ?>>Japan</option>
+                        <option value="CZECHOSLOVAKIA"<?php $this->selected("CZECHOSLOVAKIA", $this->nation); ?>>Czechoslovakia</option>
+                        <option value="SWEDEN"<?php $this->selected("SWEDEN", $this->nation); ?>>Sweden</option>
                     </select>
                 </label>
                 <label for="type">Type:
                     <select name="type" id="type">
-                        <option value="Light Tank"<?php selected("Light Tank", $this->type); ?>>Light Tank</option>
-                        <option value="Medium Tank"<?php selected("Medium Tank", $this->type); ?>>Medium Tank</option>
-                        <option value="Heavy Tank"<?php selected("Heavy Tank", $this->type); ?>>Heavy Tank</option>
-                        <option value="Tank Destroyer"<?php selected("Tank Destroyer", $this->type); ?>>Tank Destroyer</option>
-                        <option value="SPG"<?php selected("SPG", $this->type); ?>>Artillery Tank</option>
+                        <option value="Light Tank"<?php $this->selected("Light Tank", $this->type); ?>>Light Tank</option>
+                        <option value="Medium Tank"<?php $this->selected("Medium Tank", $this->type); ?>>Medium Tank</option>
+                        <option value="Heavy Tank"<?php $this->selected("Heavy Tank", $this->type); ?>>Heavy Tank</option>
+                        <option value="Tank Destroyer"<?php $this->selected("Tank Destroyer", $this->type); ?>>Tank Destroyer</option>
+                        <option value="SPG"<?php $this->selected("SPG", $this->type); ?>>Artillery Tank</option>
                     </select>
                 </label>
                 <label for="tier">Tier:
                     <select name="tier" id="tier">
-                        <option value="1"<?php selected("1", $this->tier); ?>>I</option>
-                        <option value="2"<?php selected("2", $this->tier); ?>>II</option>
-                        <option value="3"<?php selected("3", $this->tier); ?>>III</option>
-                        <option value="4"<?php selected("4", $this->tier); ?>>IV</option>
-                        <option value="5"<?php selected("5", $this->tier); ?>>V</option>
-                        <option value="6"<?php selected("6", $this->tier); ?>>VI</option>
-                        <option value="7"<?php selected("7", $this->tier); ?>>VII</option>
-                        <option value="8"<?php selected("8", $this->tier); ?>>VIII</option>
-                        <option value="9"<?php selected("9", $this->tier); ?>>IX</option>
-                        <option value="10"<?php selected("10", $this->tier); ?>>X</option>
+                        <option value="1"<?php $this->selected("1", $this->tier); ?>>I</option>
+                        <option value="2"<?php $this->selected("2", $this->tier); ?>>II</option>
+                        <option value="3"<?php $this->selected("3", $this->tier); ?>>III</option>
+                        <option value="4"<?php $this->selected("4", $this->tier); ?>>IV</option>
+                        <option value="5"<?php $this->selected("5", $this->tier); ?>>V</option>
+                        <option value="6"<?php $this->selected("6", $this->tier); ?>>VI</option>
+                        <option value="7"<?php $this->selected("7", $this->tier); ?>>VII</option>
+                        <option value="8"<?php $this->selected("8", $this->tier); ?>>VIII</option>
+                        <option value="9"<?php $this->selected("9", $this->tier); ?>>IX</option>
+                        <option value="10"<?php $this->selected("10", $this->tier); ?>>X</option>
                     </select>
                 </label>
                 <label for="hit_points">HP: 
@@ -231,6 +231,11 @@ class Tank {
 		}
 		return $return;
 	}
+
+    private function selected($expected, $actual) {
+        if ($expected == $actual) { echo " selected"; }
+        return null;
+    }
 
 }
 
