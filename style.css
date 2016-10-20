@@ -10,6 +10,13 @@ body {
 	color: #eee;
 	padding-bottom: 180px;
 }
+h1 a {
+    color: #eee;
+    text-decoration: none;
+}
+h1 a:hover {
+    text-decoration: underline;
+}
 h3 a {
     color: red;
     font-size: 1rem;

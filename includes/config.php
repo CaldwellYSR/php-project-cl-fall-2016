@@ -6,10 +6,6 @@ class Config {
 
     private function __construct() {}
 
-	/** 
-	 * Helper Function that returns PDO object
-	 * Include at the top of any file you want to access the database
-	 */
 	public static function getConnection() {
 
         static $self;

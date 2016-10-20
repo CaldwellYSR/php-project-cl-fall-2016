@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-	<h1>World of Tanks</h1>
+    <h1><a href="/">World of Tanks</a></h1>
 	<!-- Render table for currently pulled tanks. Can be pulled into a function later if need be -->
 	<table>
 		<thead>
